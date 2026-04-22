@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="ตั้งใจทำของขวัญมาให้นะครับบ 🎁">
+<meta property="og:description" content="ลองกดดูหน่อยนะ ☺️">
+<meta property="og:image" content="https://i.imgur.com/9Xn4K8G.png">
+<title>For You 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0; font-family: 'Mali', cursive;
+    background: #F5B5CD !important; /* สีชมพูที่คุณเลือก */
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; text-align: center; overflow: hidden;
+  }
+  .container { cursor: pointer; z-index: 10; }
+  .gift { font-size: 100px; transition: 0.3s; }
+  .text { margin-top: 20px; font-size: 22px; color: #5a3d45; font-weight: 600; }
+  .video-box { display: none; width: 90%; max-width: 320px; }
+  video { width: 100%; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); background: #000; }
+  .shake { animation: shake 0.4s; }
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-8px) rotate(-5deg); }
+    50% { transform: translateX(8px) rotate(5deg); }
+    75% { transform: translateX(-8px) rotate(-5deg); }
+    100% { transform: translateX(0); }
+  }
+  .open { animation: openAnim 0.8s forwards; }
+  @keyframes openAnim {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="container" id="box" onclick="handleClick()">
+  <div class="gift">🎁</div>
+  <div class="text">ลองกดเปิดดูนะครับ ☺️</div>
+</div>
+<div class="video-box" id="videoBox">
+  <div class="text" style="margin-bottom: 15px;">ลองฟังดูนะครับ 💕</div>
+  <video id="myVideo" playsinline controls>
+    <source src="present.mp4.mp4" type="video/mp4"> </video>
+</div>
+<script>
+let count = 0;
+function handleClick() {
+  const box = document.getElementById("box");
+  const videoBox = document.getElementById("videoBox");
+  const video = document.getElementById("myVideo");
+  count++;
+  if (count < 3) {
+    box.classList.add("shake");
+    setTimeout(() => box.classList.remove("shake"), 400);
+  } else if (count === 3) {
+    box.classList.add("open");
+    setTimeout(() => {
+      box.style.display = "none";
+      videoBox.style.display = "block";
+      video.play();
+    }, 600);
+  }
+}
+</script>
+</body>
+</html>
